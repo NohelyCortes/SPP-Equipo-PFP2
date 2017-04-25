@@ -17,79 +17,43 @@ public class SPPEquipoPFP2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       Vector();
-    }
-    public static int solicitaEntero(String mensaje){
-     
-        int n = 0;
-        boolean flag;
-        do{
-            try{
-           String dato = JOptionPane.showInputDialog (null, mensaje);
-            n = Integer.parseInt(dato);
-            flag=false;
-            }catch (Exception er) {
-                JOptionPane.showMessageDialog (null, "Error");
-                flag=true;
-                } 
-        } while (flag); 
-        return n;
-    }
-    public static double solicitaGasto(String mensaje){
-     
-        double n = 0;
-        boolean flag;
-        do{
-            try{
-           String dato = JOptionPane.showInputDialog (null, mensaje);
-            n= Double.parseDouble(dato);
-            flag=false;
-            }catch (Exception ex) {
-                JOptionPane.showMessageDialog (null, "Error");
-                flag=true;
-                } 
-        } while (flag); 
-        return n;
-    }
-    public static double solicitaGasto(){
-        //boolean flag;
-        double n=0;
-        //do{
-            String dato=JOptionPane.showInputDialog (null, "Introduzca el gasto:");
-            n= Double.parseDouble(dato);
-            
-            //flag=true;
-                if(0>n){
-                    JOptionPane.showMessageDialog (null,"Ha introducido un valor negativo");
-                    
-                    //flag=false;
-                }
-             //}while(flag==false);
-        
-        return n;
+      double n=0;
+        double [] gastos= new double[22222];
+         JOptionPane.showMessageDialog(null, "Introduzca los gastos. El programa se detendra hasta introducir un numero negativo");
+        for(int x=0;x<1000;x++){
+             n=pedirDato();
+             if(n>0){
+                 gastos[x]=n;
+             }else{
+                 sumatotal(gastos);
+             }
         }
-    public static void Vector(){
-        double suma=0;
-        boolean flag;
-        do{
-        int tamaño=solicitaEntero ("Introduzca el número de gastos deseados"); 
-        double [] arreglo = new double [tamaño];
-        flag=true;
-        for (int i=0; i<arreglo.length; i++){
-                arreglo[i]= solicitaGasto();
-                if (arreglo[i]>0){
-                    suma = (suma + arreglo[i]);
-                    flag=false;
-                }
-                else{
-                    
-                }
-            }while(flag==false);
+      
         
+    }
+public static double pedirDato(){
+    double n =0;
+    Scanner kb= new Scanner(System.in);
+    boolean flag;
+    do{
+        try{
+         String x= JOptionPane.showInputDialog(null,"Introdusca un gasto realizado");
+         n=new Integer (x);
+         flag=false;
+        }catch (Exception er){
+            JOptionPane.showMessageDialog(null,"Intentelo de nuevo");
+            kb.nextLine();
+            flag=true;
         }
-        JOptionPane.showMessageDialog (null, "La suma de sus gastos es: " + suma);
-        
-
-        
-        }
+    }while(flag);
+    return n;
+}  
+public static void sumatotal(double[]gastos ){
+    double suma=0;
+    for(int x=0;x<2222;x++){
+        suma=suma+gastos[x];
+    }
+    JOptionPane.showMessageDialog(null, "La suma total de los gastos el igual a $"+suma);
+    System.exit(0);
+}
 }
